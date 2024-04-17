@@ -11,6 +11,7 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InputTextModule } from 'primeng/inputtext';
     CardModule,
     TableModule,
     PasswordModule,
-    InputTextModule
+    InputTextModule,
+    ToggleButtonModule
   ]
 })
 export class AuthModule { }
