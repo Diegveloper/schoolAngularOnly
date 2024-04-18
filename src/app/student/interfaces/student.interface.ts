@@ -1,6 +1,7 @@
 export interface Student{
   id: string;
-  name: string;
+  fname: string;
+  mname?: string;
   lname1: string;
   lname2: string;
 }
