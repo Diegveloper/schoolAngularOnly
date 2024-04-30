@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { StudentService } from '../../student-service.service';
 import { Course } from '../../interfaces/course.interface';
+import { Student } from '../../interfaces/student.interface';
+import { Grade } from '../../interfaces/student.interface';
 
 interface Column{
   field: string;
@@ -9,7 +11,7 @@ interface Column{
 interface Skill{
   name: string;
   grade: number;
-  notes: string;
+  notes: string
 }
 
 @Component({
@@ -19,29 +21,34 @@ interface Skill{
 })
 export class GradesPageComponent {
   cols!: Column[];
-  rows!: Skill[];
+  rows: Skill[] = [];
   course: string = "Advanced 5";
   grade: number = 80;
 
-  c!: Course;
+  s!: Student;
 
-  constructor(private studentService: StudentService){}
+  constructor(private studentService: StudentService){
+
+  }
 
   ngOnInit(){
-    this.c = this.studentService.getCurrentCourseInfo('123');
+    this.studentService.getStudent("2").subscribe((response) => {
+      this.s = response;
+      console.log(this.s);
+      console.log(this.s.currentCourses[0].grades);
+      for(var g of this.s.currentCourses[0].grades){
+        
+        this.rows.push({name:g.name, grade:g.value,notes:g.notes })
+      }
+    });
+
+
 
     this.cols = [
       {field:'name', header: 'Skill'},
       {field:'grade', header: 'Grade'},
       {field:'notes', header: 'Notes'}
     ]
-    this.rows = [
-      {name:'Use of English', grade: this.c.useOfEnglish, notes:'Practice Phrasal verbs'},
-      {name:'Listening', grade:this.c.listening, notes:'Well done'},
-      {name:'Speaking', grade:this.c.speaking, notes:''},
-      {name:'Reading', grade:this.c.reading, notes:''},
-      {name:'Writing', grade:this.c.writing, notes:'Punctuation'},
 
-    ]
   }
 }

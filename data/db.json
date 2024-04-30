@@ -1,58 +1,113 @@
 {
-  "grades":[
+  "grades": [
     {
-      "courseId":1,
+      "courseId": 1,
       "studentId": 1,
-      "subjects":[]
+      "subjects": []
     }
   ],
-  "student":{
-    "studentId":1,
-    "currentCourses":[1],
-    "previousCourses":[],
-    "firstName":"Liliana",
-    "middleName":"",
-    "lastName":"Rodriguez",
-    "mothersLastName":"Ruiz",
-    "address":"",
-    "phone":""
-  },
-  "courses":[
+  "students": [
     {
-      "languague":"English",
-      "level":"Advanced 3",
-      "courseId":1,
-      "teacher":"Ingrid Román",
-      "startDate":"04-11-2023",
-      "endDate":"03-12-2023",
-      "students":[{
-        "studentId":1,
-        "firstName":"Liliana",
-        "middleName":"",
-        "lastName":"Rodriguez",
-        "mothersLastName":"Ruiz",
-        "grades":[{
-          "Use of English": 4,
-          "Listening": 10,
-          "Grammar": 9,
-          "Reading": 10,
-          "Writing":8
-        }]
-      }],
-      "finalGrade": 9,
-      "schedule":"Saturdays",
-      "classRoom":1
-    }
-  ],
-  "courseGrades":[
-    {
-      "courseId":1,
-      "studentId":1,
-      "grades":[
-        {"criteria":1,"value":8}
+      "id": 2,
+      "currentCourses": [
+        {
+          "languague": "English",
+          "level": "Advanced 3",
+          "id": 1,
+          "teacher": "Ingrid Román",
+          "startDate": "04-11-2023",
+          "endDate": "03-12-2023",
+          "grades": [
+            {
+              "name": "Use of English",
+              "value": 10,
+              "notes": ""
+            },
+            {
+              "name": "Listening",
+              "value": 10,
+              "notes": ""
+            },
+            {
+              "name": "Speaking",
+              "value": 10,
+              "notes": ""
+            },
+            {
+              "name": "Reading",
+              "value": 10,
+              "notes": ""
+            },
+            {
+              "name": "Writing",
+              "value": 10,
+              "notes": ""
+            }
+          ],
+          "finalGrade": 9,
+          "schedule": "Saturdays",
+          "classRoom": 1
+        }
       ],
-      "finalGrade":10
+      "previousCourses": [],
+      "firstName": "Liliana",
+      "middleName": "",
+      "lastName": "Rodriguez",
+      "mothersLastName": "Ruiz",
+      "address": "",
+      "phone": ""
+    }
+  ],
+  "courses": [
+    {
+      "languague": "English",
+      "level": "Advanced 3",
+      "id": 1,
+      "teacher": "Ingrid Román",
+      "startDate": "04-11-2023",
+      "endDate": "03-12-2023",
+      "students": [
+        {
+          "id": 1,
+          "firstName": "Liliana",
+          "middleName": "",
+          "lastName": "Rodriguez",
+          "mothersLastName": "Ruiz",
+          "grades": [
+            {
+              "Use of English": 4
+            },
+            {
+              "Listening": 10
+            },
+            {
+              "Grammar": 9
+            },
+            {
+              "Reading": 10
+            },
+            {
+              "Writing": 8
+            }
+          ]
+        }
+      ],
+      "finalGrade": 9,
+      "schedule": "Saturdays",
+      "classRoom": 1
+    }
+  ],
+  "courseGrades": [
+    {
+      "courseId": 1,
+      "studentId": 1,
+      "grades": [
+        {
+          "criteria": 1,
+          "value": 8
+        }
+      ],
+      "finalGrade": 10
     }
   ]
-
 }

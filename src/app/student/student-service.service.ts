@@ -1,24 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Course } from './interfaces/course.interface';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, of, throwError } from 'rxjs';
+import { Student } from './interfaces/student.interface';
+import { environments } from '../../environments/environments';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
+  private baseUrl: string = environments.baseUrl;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getCurrentCourseInfo(id: string): Course{
-    const c: Course = {
-      id: 'ux1',
-      listening: 8,
-      useOfEnglish: 10,
-      speaking: 6,
-      reading: 7,
-      writing: 9,
-      course: 'Advanced 4',
-      finalGrade: 80
+  getStudent(studentId: string):Observable< Student>{
+    return this.httpClient.get<Student>(`${this.baseUrl}/students/${studentId}`)
+    .pipe(catchError(this.handleError));
+
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error && error.error.message) {
+      // Server-side error with a message
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Client-side or network error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    return c;
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }
