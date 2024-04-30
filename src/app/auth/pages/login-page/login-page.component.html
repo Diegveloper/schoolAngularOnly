@@ -3,8 +3,8 @@
 
     <div style="padding-top: 10px">
       <span class="p-float-label">
-        <input pInputText id="username" />
-        <label for="username">Username</label>
+        <input pInputText id="email" />
+        <label for="email">Email</label>
       </span>
     </div>
 
@@ -15,7 +15,9 @@
     </span>
     </div>
     <div class="submit-button">
-      <p-button label="login"></p-button>
+      <p-button label="login"
+        (click)="onLogin()"
+      ></p-button>
 
     </div>
 

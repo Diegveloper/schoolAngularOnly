@@ -109,5 +109,12 @@
       ],
       "finalGrade": 10
     }
+  ],
+  "users":[
+    {
+      "id":2,
+      "email":"lilyrod@gmail.com",
+      "password":"1234"
+    }
   ]
 }
