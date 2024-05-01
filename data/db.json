@@ -126,5 +126,18 @@
       "password": "1234",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJuYW1lIjoibGlsaWFuYSByb2RyaWd1ZXoiLCJpYXQiOjE1MTYyMzkwMjJ9.FCZ1bNKVXrDEpLJVe3r7bFT0bO6H_rRqrZcbCLqPNAk"
     }
+  ],
+  "authorization":[
+    {
+      "id":2,
+      "user":
+        {
+          "id": "2",
+          "email": "lilyrod@gmail.com",
+          "password": "1234"
+        },
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJuYW1lIjoibGlsaWFuYSByb2RyaWd1ZXoiLCJpYXQiOjE1MTYyMzkwMjJ9.FCZ1bNKVXrDEpLJVe3r7bFT0bO6H_rRqrZcbCLqPNAk"
+
+    }
   ]
 }

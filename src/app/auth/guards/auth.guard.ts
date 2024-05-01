@@ -8,7 +8,8 @@ export const authGuard: CanActivateFn = (
   ) => {
     const authService = inject(AuthService);
     const router = inject(Router);
-    if(false){
+    if(authService.checkAuthStatus()){
+      console.log("in the guard");
       return true;
     }
     else{
