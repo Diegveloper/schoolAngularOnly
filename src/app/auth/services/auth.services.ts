@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user.interface';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map, of, tap } from 'rxjs';
+import { LoginResponse } from '../interfaces/login.interface';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -16,12 +17,23 @@ export class AuthService {
     return structuredClone(this.user);
   }
 
-  login(userName: string, password: string): Observable<User>{
-    return this.http.get<User>(`${this.baseUrl}/users/2`)
+  login(email: string, password: string): Observable<Boolean>{
+    const url = `${this.baseUrl}/login/2`;
+    const body = {email, password};
+    console.log("en el login");
+    //return this.http.get<LoginResponse>(url, body)
+    return this.http.get<LoginResponse>(url)
     .pipe(
-      tap( user => this.user = user),
-      tap( user => localStorage.setItem('token', user.id.toString()))
+      tap( ({id,token})=>{
+
+        this.user?.id;
+        localStorage.setItem('token',token);
+        console.log({id,token})
+      } ),
+      map(()=> true)
     );
+
+
   }
 
   logout(){

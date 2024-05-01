@@ -3,12 +3,13 @@
     {
       "courseId": 1,
       "studentId": 1,
-      "subjects": []
+      "subjects": [],
+      "id": "be6b"
     }
   ],
   "students": [
     {
-      "id": 2,
+      "id": "2",
       "currentCourses": [
         {
           "languague": "English",
@@ -62,7 +63,7 @@
     {
       "languague": "English",
       "level": "Advanced 3",
-      "id": 1,
+      "id": "1",
       "teacher": "Ingrid Román",
       "startDate": "04-11-2023",
       "endDate": "03-12-2023",
@@ -107,14 +108,23 @@
           "value": 8
         }
       ],
-      "finalGrade": 10
+      "finalGrade": 10,
+      "id": "6273"
     }
   ],
-  "users":[
+  "users": [
     {
-      "id":2,
-      "email":"lilyrod@gmail.com",
-      "password":"1234"
+      "id": "2",
+      "email": "lilyrod@gmail.com",
+      "password": "1234"
+    }
+  ],
+  "login": [
+    {
+      "id": 2,
+      "email": "lilyrod@gmail.com",
+      "password": "1234",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJuYW1lIjoibGlsaWFuYSByb2RyaWd1ZXoiLCJpYXQiOjE1MTYyMzkwMjJ9.FCZ1bNKVXrDEpLJVe3r7bFT0bO6H_rRqrZcbCLqPNAk"
     }
   ]
 }

@@ -12,7 +12,7 @@ import { TableModule } from 'primeng/table';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     TableModule,
     PasswordModule,
     InputTextModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }
