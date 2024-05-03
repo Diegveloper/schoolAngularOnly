@@ -4,15 +4,20 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { GradesPageComponent } from './pages/grades-page/grades-page.component';
 import { EnrollmentsPageComponent } from './pages/enrollments-page/enrollments-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { authGuard } from '../auth/guards/auth.guard';
+
+
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutPageComponent,
     children:[
-      {path: '', component: HomePageComponent},
-      {path: 'grades', component: GradesPageComponent},
-      {path: 'enrollments', component: EnrollmentsPageComponent}
+
+      {path: 'home', component: HomePageComponent,canActivate: [authGuard]},
+      {path: 'grades', component: GradesPageComponent,canActivate: [authGuard]},
+      {path: 'enrollments', component: EnrollmentsPageComponent,canActivate: [authGuard]},
+      {path: '', component:HomePageComponent,canActivate: [authGuard]},
     ]
   }
 ];

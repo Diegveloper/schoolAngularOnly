@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeIcons, MenuItem } from 'primeng/api';
+import { AuthService } from '../../../auth/services/auth.services';
 
 @Component({
   selector: 'app-layout-page',
@@ -7,12 +8,18 @@ import { PrimeIcons, MenuItem } from 'primeng/api';
   styleUrl: './layout-page.component.scss'
 })
 export class LayoutPageComponent {
+
+  constructor(
+    private authService: AuthService
+  ){
+
+  }
   items: MenuItem[] | undefined;
   ngOnInit() {
     this.items = [{
       label: 'Home',
       icon: 'pi pi-home',
-      url: './student'
+      url: './student/home'
     },
     {
       label: 'Grades',
@@ -26,8 +33,14 @@ export class LayoutPageComponent {
     },
     {
       label: 'Quit',
-      icon: 'pi pi-fw pi-power-off'
+      icon: 'pi pi-fw pi-power-off',
+      url: './auth/login',
+      command: () => this.quit()
     }
     ]
   }
+  quit(){
+    this.authService.logout();
+  }
+
 }

@@ -31,7 +31,7 @@ export class LoginPageComponent {
     }
     this.authService.login(this.loginForm.value.email,this.loginForm.value.password)
     .subscribe(user=>{
-      this.router.navigate(['/student']);
+      this.router.navigate(['/student/home']);
     });
   }
 

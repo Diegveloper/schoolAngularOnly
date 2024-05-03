@@ -12,6 +12,10 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { OverlayModule } from 'primeng/overlay';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
@@ -28,7 +32,11 @@ import { TableModule } from 'primeng/table';
     PanelModule,
     ButtonModule,
     CardModule,
-    TableModule
+    TableModule,
+    DropdownModule,
+    FormsModule,
+    OverlayModule,
+    MultiSelectModule
   ]
 })
 export class StudentModule { }

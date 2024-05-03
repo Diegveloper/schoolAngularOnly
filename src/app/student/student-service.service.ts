@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Course } from './interfaces/course.interface';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { Student } from './interfaces/student.interface';
 import { environments } from '../../environments/environments';
@@ -16,7 +16,9 @@ export class StudentService {
   constructor(private httpClient: HttpClient) { }
 
   getStudent(studentId: string):Observable< Student>{
-    return this.httpClient.get<Student>(`${this.baseUrl}/students/${studentId}`)
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+    return this.httpClient.get<Student>(`${this.baseUrl}/students`,{params:{id:studentId}, headers})
     .pipe(catchError(this.handleError));
 
   }

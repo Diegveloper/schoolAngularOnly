@@ -7,6 +7,7 @@ import { catchError, map, of, tap } from 'rxjs';
 import { LoginResponse } from '../interfaces/login.interface';
 import { Session } from '../interfaces/session.interface';
 import { CheckTokenResponse } from '../interfaces/check-token.response';
+import { SessionStatus } from '../interfaces/status.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
   private user?: User;
   private session?: Session;
   private authenticated?: boolean;
+  private validToken?: boolean;
   constructor(private http: HttpClient) { }
 
   get currentUser(): User | undefined {
@@ -22,58 +24,46 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<Boolean> {
-    const url = `${this.baseUrl}/login/2`;
+    const url = `${this.baseUrl}/login`;
     const body = { email, password };
-    console.log("en el login");
-    //return this.http.get<LoginResponse>(url, body)
-    return this.http.get<LoginResponse>(url)
+    return this.http.post<LoginResponse>(url, body)
       .pipe(
         tap(({ id, token }) => {
 
           this.user?.id;
           localStorage.setItem('token', token);
-          console.log({ id, token })
+          console.log({ id, token });
+          this.authenticated = true
         }),
-        map(() => true)
+        map(() => true),
+        catchError(() => of(false))
       );
+  }
 
 
+  isAuthenticated() {
+    return this.authenticated;
   }
 
   logout() {
+    console.log("logging out");
     this.user = undefined;
     this.authenticated = false;
     localStorage.clear();
   }
 
-  checkAuthentication(): Observable<boolean> {
-    if (!localStorage.getItem('token')) return of(false);
-    const token = localStorage.getItem('token');
-    return this.http.get<User>(`${this.baseUrl}/users/2`)
-      .pipe(
-        tap(user => this.user = user),
-        map(user => !!user),
-        catchError(err => of(false))
-      );
+  validateToken(token: string): Observable<boolean>{
+    const url = `${this.baseUrl}/authorization`;
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+    return this.http.get<boolean>(url, {headers}).pipe(map(() => true),
+    catchError(() => of(false)));
   }
 
-  checkAuthStatus(): Observable<boolean> {
-    const url = `${this.baseUrl}/authorization`;
-    const token = localStorage.getItem('token');
-    if (!token) return of(false);
-    
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
-    return this.http.get<CheckTokenResponse>(url, { headers }).pipe(
-      map(({token, user}) => {
-        this.user = user;
-        this.authenticated = true;
-        localStorage.setItem('token',token);
-        return true;
-       }),
-       catchError(() => of(false))
-    )
-  }
+
+
+
+
+
 
 
 }

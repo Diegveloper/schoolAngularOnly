@@ -1,9 +1,10 @@
+<p-card header={{selectedCourse?.name}}>
 
+  <div *ngIf="showCourses" style="margin-bottom: 40px;">
+    <p-dropdown [options]="studentCurrentCourses" [(ngModel)]="selectedCourse" optionLabel="name" ></p-dropdown>
+  </div>
 
-
-<p-card header={{course}}>
-
-  <p-table [columns]="cols" [value]="rows" >
+  <p-table [columns]="cols" [value]="rows">
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns">
@@ -13,8 +14,8 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
-        <td *ngFor = "let col of columns">
-            {{rowData[col.field]}}
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
         </td>
       </tr>
     </ng-template>
