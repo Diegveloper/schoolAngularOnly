@@ -1,7 +1,9 @@
 <p-card header={{selectedCourse?.name}}>
 
   <div *ngIf="showCourses" style="margin-bottom: 40px;">
-    <p-dropdown [options]="studentCurrentCourses" [(ngModel)]="selectedCourse" optionLabel="name" ></p-dropdown>
+    <p-dropdown [options]="studentCurrentCourses" [(ngModel)]="selectedCourse" optionLabel="name"
+      placeholder="Select a course"
+    ></p-dropdown>
   </div>
 
   <p-table [columns]="cols" [value]="rows">

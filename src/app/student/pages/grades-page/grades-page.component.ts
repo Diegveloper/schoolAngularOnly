@@ -41,7 +41,7 @@ export class GradesPageComponent {
 
   public student?: Student;
 
-  studentCurrentCourses: CourseName[] | undefined;
+  studentCurrentCourses?: CourseName[] | undefined;
   selectedCourse?: CourseName;
   userId: string = "";
 
@@ -70,6 +70,12 @@ export class GradesPageComponent {
         if(student.currentCourses.length > 1 ){
           this.showCourses = true;
         }
+        console.log(student.currentCourses);
+        this.studentCurrentCourses = student.currentCourses.map(
+          c => ({
+            name: c.language +" "+ c.level
+          })
+        )
         return;
       }
     )
@@ -86,8 +92,7 @@ export class GradesPageComponent {
     //   }
     // });
 
-    console.log("estoy en esta madre");
-    console.log(this.student?.firstName.toString());
+
 
     this.cols = [
       {field:'name', header: 'Skill'},
