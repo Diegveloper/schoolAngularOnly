@@ -8,17 +8,20 @@ import { map } from 'rxjs';
 
 
 
-interface Column{
+
+interface Column {
   field: string;
   header: string;
 }
-interface Skill{
+interface Skill {
   name: string;
   grade: number;
   notes: string
 }
-interface CourseName{
+interface CourseName {
   name: string;
+  id?: number;
+  grades: Skill[];
 }
 
 interface City {
@@ -36,7 +39,7 @@ export class GradesPageComponent {
   cols!: Column[];
   rows: Skill[] = [];
   course: string = "Advanced 5";
-  grade: number = 80;
+  finalgrade!: number;
   showCourses: boolean = false;
 
   public student?: Student;
@@ -46,34 +49,31 @@ export class GradesPageComponent {
   userId: string = "";
 
 
-  constructor(private studentService: StudentService){
+  constructor(private studentService: StudentService) {
 
   }
 
-  cities!: City[];
-
-  selectedCities!: City[];
 
 
+  ngOnInit() {
 
-  ngOnInit(){
-
-    this.studentCurrentCourses = [
-      {name:"german 2"},
-      {name:"english 4"},
-      {name:"English for businesses"}
-    ]
 
     this.studentService.getStudent(this.getLocalStorageUser()).subscribe(
       student => {
         this.student = student;
-        if(student.currentCourses.length > 1 ){
+        if (student.currentCourses.length > 1) {
           this.showCourses = true;
         }
         console.log(student.currentCourses);
         this.studentCurrentCourses = student.currentCourses.map(
           c => ({
-            name: c.language +" "+ c.level
+            name: c.language + " " + c.level,
+            id: c.id,
+            grades: c.grades.map(g => ({
+              name: g.name,
+              grade: g.value,
+              notes: g.notes
+            }))
           })
         )
         return;
@@ -95,20 +95,43 @@ export class GradesPageComponent {
 
 
     this.cols = [
-      {field:'name', header: 'Skill'},
-      {field:'grade', header: 'Grade'},
-      {field:'notes', header: 'Notes'}
+      { field: 'name', header: 'Skill' },
+      { field: 'grade', header: 'Grade' },
+      { field: 'notes', header: 'Notes' }
     ]
 
 
 
   }
 
-  private getLocalStorageUser(): string{
+  onItemSelected(course: CourseName) {
+
+    console.log(this.student);
+    let c = this.student?.currentCourses.find(c => c.id == course.id)?.grades;
+    if (c) {
+      this.rows = c?.map(x => ({
+        name: x.name,
+        grade: x.value,
+        notes: x.notes
+      }));
+    }
+
+    let f = this.student?.currentCourses.find(c => c.id == course.id)?.finalGrade;
+    if(f){
+      this.finalgrade = f; 
+    }
+    console.log(c)
+  }
+
+  private populateRows() {
+
+  }
+
+  private getLocalStorageUser(): string {
     let x: string = "";
     let tmp: string | null | undefined = "";
     const id = localStorage.getItem("userId");
-    if(id != null){
+    if (id != null) {
       tmp = id.toString();
       x = tmp;
     }

@@ -1,7 +1,11 @@
 <p-card header={{selectedCourse?.name}}>
 
   <div *ngIf="showCourses" style="margin-bottom: 40px;">
-    <p-dropdown [options]="studentCurrentCourses" [(ngModel)]="selectedCourse" optionLabel="name"
+    <p-dropdown
+      [options]="studentCurrentCourses"
+      [(ngModel)]="selectedCourse"
+      (onChange)="onItemSelected($event.value)"
+      optionLabel="name"
       placeholder="Select a course"
     ></p-dropdown>
   </div>
@@ -23,7 +27,7 @@
     </ng-template>
   </p-table>
   <div>
-    <h1>Final grade: {{grade}}</h1>
+    <h1>Final grade: {{finalgrade}}</h1>
   </div>
   <div class="flex  flex-wrap mt-5">
     <button pButton pRipple label="Print" class="p-button-success" icon="pi pi-print"></button>
