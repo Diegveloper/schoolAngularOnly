@@ -3,6 +3,7 @@ import { StudentService } from '../../student-service.service';
 import { Course } from '../../interfaces/course.interface';
 import { Student } from '../../interfaces/student.interface';
 import { Grade } from '../../interfaces/student.interface';
+import { map } from 'rxjs';
 
 
 
@@ -36,11 +37,13 @@ export class GradesPageComponent {
   rows: Skill[] = [];
   course: string = "Advanced 5";
   grade: number = 80;
-  showCourses: boolean = true;
+  showCourses: boolean = false;
 
-  s!: Student;
+  public student?: Student;
+
   studentCurrentCourses: CourseName[] | undefined;
   selectedCourse?: CourseName;
+  userId: string = "";
 
 
   constructor(private studentService: StudentService){
@@ -60,17 +63,31 @@ export class GradesPageComponent {
       {name:"english 4"},
       {name:"English for businesses"}
     ]
-    this.studentService.getStudent("23").subscribe((response) => {
-      this.s = response;
-      console.log(this.s);
-      console.log(this.s.currentCourses[0].grades);
-      for(var g of this.s.currentCourses[0].grades){
 
-        this.rows.push({name:g.name, grade:g.value,notes:g.notes })
+    this.studentService.getStudent(this.getLocalStorageUser()).subscribe(
+      student => {
+        this.student = student;
+        if(student.currentCourses.length > 1 ){
+          this.showCourses = true;
+        }
+        return;
       }
-    });
+    )
 
 
+
+    // this.studentService.getStudent(this.userId).subscribe((response) => {
+    //   this.s = response;
+    //   console.log(this.s);
+    //   console.log(this.s.currentCourses[0].grades);
+    //   for(var g of this.s.currentCourses[0].grades){
+
+    //     this.rows.push({name:g.name, grade:g.value,notes:g.notes })
+    //   }
+    // });
+
+    console.log("estoy en esta madre");
+    console.log(this.student?.firstName.toString());
 
     this.cols = [
       {field:'name', header: 'Skill'},
@@ -81,4 +98,18 @@ export class GradesPageComponent {
 
 
   }
+
+  private getLocalStorageUser(): string{
+    let x: string = "";
+    let tmp: string | null | undefined = "";
+    const id = localStorage.getItem("userId");
+    if(id != null){
+      tmp = id.toString();
+      x = tmp;
+    }
+    return x;
+  }
+
+
+
 }

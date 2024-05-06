@@ -32,6 +32,7 @@ export class AuthService {
 
           this.user?.id;
           localStorage.setItem('token', token);
+          localStorage.setItem('userId',id.toString());
           console.log({ id, token });
           this.authenticated = true
         }),
