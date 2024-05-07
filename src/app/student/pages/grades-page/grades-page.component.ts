@@ -22,6 +22,7 @@ interface CourseName {
   name: string;
   id?: number;
   grades: Skill[];
+  finalGrade?: number;
 }
 
 interface City {
@@ -38,7 +39,7 @@ interface City {
 export class GradesPageComponent {
   cols!: Column[];
   rows: Skill[] = [];
-  course: string = "Advanced 5";
+  course?: string;
   finalgrade!: number;
   showCourses: boolean = false;
 
@@ -76,6 +77,33 @@ export class GradesPageComponent {
             }))
           })
         )
+        if(student && student.currentCourses.length == 1){
+          let name = student.currentCourses[0].language + " " + student.currentCourses[0].level;
+          let grade = student.currentCourses[0].finalGrade
+          let skills: Skill[] = student.currentCourses[0].grades.map(
+            c => ({
+              name: c.name,
+              grade: c.value,
+              notes: c.notes
+            })
+          )
+          this.selectedCourse = {name:name, finalGrade:grade, grades:skills }
+          if (skills) {
+            this.rows = skills?.map(x => ({
+              name: x.name,
+              grade: x.grade,
+              notes: x.notes
+            }));
+          }
+          this.finalgrade = grade;
+
+
+        }
+
+
+
+
+
         return;
       }
     )
@@ -118,14 +146,12 @@ export class GradesPageComponent {
 
     let f = this.student?.currentCourses.find(c => c.id == course.id)?.finalGrade;
     if(f){
-      this.finalgrade = f; 
+      this.finalgrade = f;
     }
     console.log(c)
   }
 
-  private populateRows() {
 
-  }
 
   private getLocalStorageUser(): string {
     let x: string = "";
