@@ -10,11 +10,36 @@ export class HomePageService {
   getImages(): Observable<Image[]>{
     const images: Image[] = [
       {
-        itemImageSrc:"assets/images/landinImages/home.jpg",
+        itemImageSrc:"/assets/images/landingImages/home.jpg",
         thumbnailImageSrc:"",
         alt:"a",
         title:"Welcome",
-      }
+      },
+      {
+        itemImageSrc:"/assets/images/landingImages/english.jpg",
+        thumbnailImageSrc:"",
+        alt:"a",
+        title:"Welcome",
+      },
+      {
+        itemImageSrc:"/assets/images/landingImages/french.jpg",
+        thumbnailImageSrc:"",
+        alt:"a",
+        title:"Welcome",
+      },
+      {
+        itemImageSrc:"/assets/images/landingImages/spanish.jpg",
+        thumbnailImageSrc:"",
+        alt:"a",
+        title:"Welcome",
+      },
+      {
+        itemImageSrc:"/assets/images/landingImages/german.jpg",
+        thumbnailImageSrc:"",
+        alt:"a",
+        title:"Welcome",
+      },
+
     ];
     return of(images);
   }
