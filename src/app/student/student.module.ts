@@ -16,7 +16,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { OverlayModule } from 'primeng/overlay';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DropdownModule,
     FormsModule,
     OverlayModule,
-    MultiSelectModule
+    MultiSelectModule,
+    GalleriaModule
   ]
 })
 export class StudentModule { }

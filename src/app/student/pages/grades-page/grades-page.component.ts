@@ -108,20 +108,6 @@ export class GradesPageComponent {
       }
     )
 
-
-
-    // this.studentService.getStudent(this.userId).subscribe((response) => {
-    //   this.s = response;
-    //   console.log(this.s);
-    //   console.log(this.s.currentCourses[0].grades);
-    //   for(var g of this.s.currentCourses[0].grades){
-
-    //     this.rows.push({name:g.name, grade:g.value,notes:g.notes })
-    //   }
-    // });
-
-
-
     this.cols = [
       { field: 'name', header: 'Skill' },
       { field: 'grade', header: 'Grade' },
