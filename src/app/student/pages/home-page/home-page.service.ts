@@ -11,7 +11,7 @@ export class HomePageService {
     const images: Image[] = [
       {
         itemImageSrc:"/assets/images/landingImages/home.jpg",
-        thumbnailImageSrc:"",
+        thumbnailImageSrc:"/assets/images/landingImages/home_thumbnail.jpg",
         alt:"a",
         title:"Welcome",
       },
